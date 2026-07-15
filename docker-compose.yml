@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
+
+
+# ตอน Test ค่อยเปิดใช้
+
+#   backend:
+#     build:
+#       context: ./server
+#     container_name: formflow-backend
+#     restart: unless-stopped
+#     environment:
+#       DATABASE_URL: postgres://postgres:postgres@postgres:5432/formflow
+#     depends_on:
+#       - postgres
+#     ports:
+#       - "3000:3000"
+
+#   frontend:
+#     build:
+#       context: ./client
+#     container_name: formflow-frontend
+#     restart: unless-stopped
+#     environment:
+#       NEXT_PUBLIC_API_URL: http://backend:3000
+#     depends_on:
+#       - backend
+#     ports:
+#       - "4000:3000"
+
+# volumes:
+#   postgres_data:
