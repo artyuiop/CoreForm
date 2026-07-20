@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:3000
+@formId = form_id_here
+
+### 1. Get All Forms
+GET {{baseUrl}}/form
+Accept: application/json
+
+### 2. Create a New Form
+# @name createForm
+POST {{baseUrl}}/form
+Content-Type: application/json
+
+{
+  "title": "แบบฟอร์มทดสอบระบบ",
+  "description": "ทดสอบการทำงานของ API"
+}
+
+### 3. Get Form by ID (Replace :id with actual ID from step 2)
+@newFormId = {{createForm.response.body.id}}
+GET {{baseUrl}}/form/{{newFormId}}
+Accept: application/json
+
+### 4. Update Form (Replace :id with actual ID)
+PATCH {{baseUrl}}/form/{{newFormId}}
+Content-Type: application/json
+
+{
+  "title": "แบบฟอร์มทดสอบระบบ (อัปเดตแล้ว)",
+  "description": "แก้ไขรายละเอียดแบบฟอร์ม"
+}
+
+### 5. Submit Form Data
+POST {{baseUrl}}/form/{{newFormId}}/submit
+Content-Type: application/json
+
+{
+  "data": {
+    "firstName": "ทดสอบ",
+    "lastName": "ระบบ",
+    "email": "test@example.com"
+  }
+}
+
+### 6. Get Form Submissions
+GET {{baseUrl}}/form/{{newFormId}}/submissions
+Accept: application/json
+
+### 7. Delete Form (Replace :id with actual ID)
+DELETE {{baseUrl}}/form/{{newFormId}}
