@@ -2,14 +2,18 @@
 
 import React from "react";
 import Input from "./Input";
+import { FormDisplayItem } from "@/types/form";
+import Button from "./Button";
 
 // Search icon path
 
-interface SearchInputProps {
+interface SearchInputProps {  
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
   id?: string;
+
+  forms: FormDisplayItem[];
 }
 
 export default function SearchInput({
@@ -17,6 +21,7 @@ export default function SearchInput({
   onChange,
   placeholder = "SEARCH...",
   id = "search-input",
+  forms
 }: SearchInputProps) {
   return (
     <div className="">
@@ -29,9 +34,16 @@ export default function SearchInput({
         size="md"
       />
       <div className="flex flex-wrap gap-2 mt-2 pl-1">
-        <button className="flex items-center gap-1.5 border border-gray-400 text-gray-700 rounded-[4px] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider transition-colors cursor-pointer ">
-          
-        </button>
+        { forms.map((form) => (
+          <Button 
+            key={form.id}
+            variant="secondary"
+            size="sm"
+            onClick={() => onChange(form.title)}
+          >
+            {form.title}
+          </Button>
+        ))}
        
       </div>  
     </div>

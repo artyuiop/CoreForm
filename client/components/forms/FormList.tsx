@@ -37,6 +37,7 @@ export default function FormList({ forms }: FormListProps) {
           value={searchQuery}
           onChange={setSearchQuery}
           placeholder="SEARCH FORMS..."
+          forms={forms}
         />
       </div>
 

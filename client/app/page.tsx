@@ -4,8 +4,6 @@ import type { FormDisplayItem } from "../types/form";
 import FormList from "../components/forms/FormList";
 import Link from "next/link";
 
-export const revalidate = 60;
-
 export default async function Home() {
   let forms: FormDisplayItem[] = [];
   let hasError = false;

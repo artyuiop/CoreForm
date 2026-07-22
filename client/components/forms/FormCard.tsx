@@ -10,7 +10,7 @@ export default function FormCard({ form }: FormCardProps) {
   return (
     <Link
       href={`/forms/${form.id}`}
-      className=" group bg-white border border-gray-400 rounded-[6px] transition-all duration-300 overflow-hidden flex flex-col h-full hover:-translate-y-1"
+      className=" group bg-white border border-gray-400/80 rounded-[6px] transition-all duration-300 overflow-hidden flex flex-col h-full hover:-translate-y-1"
     >
       <div className="w-full h-40 flex items-center justify-center  transition-colors relative shrink-0 overflow-hidden">
         <div className={`absolute inset-0 opacity-20 bg-gray-600 group-hover:opacity-40 transition-opacity duration-500`}/>
