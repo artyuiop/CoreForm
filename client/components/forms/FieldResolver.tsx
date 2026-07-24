@@ -1,86 +1,88 @@
+import { Input, Select, Textarea, Checkbox } from "@/constants";
 import { FormField, FormValue } from "@/types/form";
 import React from "react";
 
 interface FieldResolverProps {
   field: FormField;
   value: FormValue;
-  onChange: (val: unknown) => void;
+  onChange: (val: FormValue) => void;
 }
 
 const FieldResolver = ({ field, value, onChange }: FieldResolverProps) => {
-  // Bolean
   switch (true) {
+    // Boolean
     case field.type === "boolean":
       return (
-        <input
-          type="checkbox"
+        <Checkbox
           checked={Boolean(value)}
           onChange={(e) => onChange(e.target.checked)}
+          label="เปิดใช้งาน / เลือกตัวเลือกนี้"
         />
       );
 
-    //  String
+    // String + Enum
     case field.type === "string" && !!field.enum:
       return (
-        <select
-          value={String(value)}
+        <Select
+          value={String(value ?? "")}
           onChange={(e) => onChange(e.target.value)}
-        >
-          <option value="">เลือก...</option>
-
-          {field.enum.map((opt) => (
-            <option key={opt} value={opt}>
-              {opt}
-            </option>
-          ))}
-        </select>
+          options={field.enum}
+          placeholder="-- กรุณาเลือก --"
+        />
       );
 
-    //  Date
+    // Date
     case field.format === "date":
       return (
-        <input
+        <Input
           type="date"
-          value={String(value)}
-          onChange={(e) => onChange(e.target.value)}
-        />
-      );
-    //  Tel
-    case field.format === "tel":
-      return (
-        <input
-          type="tel"
-          value={String(value)}
-          onChange={(e) => onChange(e.target.value)}
-        />
-      );
-
-    //  Muti-line Text
-    case field["x-multiline"] === true:
-      return (
-        <textarea
           value={String(value ?? "")}
           onChange={(e) => onChange(e.target.value)}
         />
       );
 
-    //  Number
-    case field.type === "number":
+    // Tel
+    case field.format === "tel":
       return (
-        <input
-          type="number"
-          value={Number(value)}
-          onChange={(e) =>
-            onChange(e.target.value === "" ? null : Number(e.target.value))
-          }
+        <Input
+          type="tel"
+          placeholder="08X-XXX-XXXX"
+          value={String(value ?? "")}
+          onChange={(e) => onChange(e.target.value)}
         />
       );
 
-    //  Default
+    // Multi-line Text
+    case field["x-multiline"] === true:
+      return (
+        <Textarea
+          value={String(value ?? "")}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="กรอกรายละเอียด..."
+          rows={3}
+        />
+      );
+
+    // Number
+    case field.type === "number":
+      return (
+        <Input
+          type="number"
+          placeholder="0"
+          value={typeof value === "number" ? value : ""}
+          onChange={(e) => {
+            const inputValue = e.target.value;
+            onChange(inputValue === "" ? null : Number(inputValue));
+          }}
+        />
+      );
+
+    // Default String
     default:
       return (
-        <input
+        <Input
           type="text"
+          placeholder="กรอกข้อมูล..."
           value={String(value ?? "")}
           onChange={(e) => onChange(e.target.value)}
         />

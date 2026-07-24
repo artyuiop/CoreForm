@@ -4,17 +4,20 @@ import React from 'react';
 
 const variantStyles = {
   primary:
-    'bg-yellow-400 text-gray-900 hover:bg-yellow-500 border-transparent font-bold',
-  secondary:
-    'bg-white text-gray-700 border-gray-200 hover:border-yellow-400 hover:text-yellow-700 hover:bg-yellow-50',
-  danger:
-    'bg-red-600 text-white hover:bg-red-700 border-transparent font-bold',
-  ghost:
-    'bg-transparent text-gray-500 border-transparent hover:text-yellow-700 hover:bg-yellow-50',
-  link:
-    'bg-transparent text-yellow-600 border-transparent hover:text-yellow-800 underline-offset-2 hover:underline p-0 h-auto min-h-0',
-} as const;
+    'bg-black text-white border-black hover:bg-gray-800 active:bg-gray-900 font-semibold',
 
+  secondary:
+    'bg-white text-gray-900 border-gray-300 hover:bg-gray-50 hover:border-gray-500 active:bg-gray-100',
+
+  danger:
+    'bg-white text-gray-900 border-gray-300 hover:bg-gray-100 hover:border-gray-900 active:bg-gray-200',
+
+  ghost:
+    'bg-transparent text-gray-500 border-transparent hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200',
+
+  link:
+    'bg-transparent text-gray-700 border-transparent hover:text-black hover:underline underline-offset-4 p-0 h-auto min-h-0',
+} as const;
 const sizeStyles = {
   sm: 'px-3 py-1.5 text-[10px] min-h-[28px]',
   md: 'px-4 py-2 text-xs min-h-[36px]',

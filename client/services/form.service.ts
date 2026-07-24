@@ -11,4 +11,9 @@ export const formService = {
     const response = await api.get<FormTemplate>(`/form/${id}`, { signal });
     return response.data;
   },
+
+  submitFormData: async (formTemplateId: string, data: Record<string, unknown>) => {
+    const response = await api.post(`/form/${formTemplateId}/submit`, { data });
+    return response.data;
+  },
 };

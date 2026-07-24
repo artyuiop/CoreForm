@@ -1,7 +1,7 @@
 import React from "react";
-import { formService } from "../services/form.service";
-import type { FormDisplayItem } from "../types/form";
-import FormList from "../components/forms/FormList";
+import FormList from "@/components/forms/FormList";
+import { formService } from "@/services/form.service";
+import type { FormDisplayItem } from "@/types/form";
 import Link from "next/link";
 
 export default async function Home() {
